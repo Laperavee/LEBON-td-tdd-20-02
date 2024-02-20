@@ -58,8 +58,17 @@ class Basket {
         if (!this.items.some(item => item.name === itemName)) {
             throw new Error(`Item '${itemName}' not found in the basket.`);
         }
+        if (!this.isValidCoupon(couponCode)) {
+            console.log("Invalid coupon code. Please try again.");
+            return;
+        }
         this.discounts[itemName] = percentage;
         console.log(`Coupon '${couponCode}' applied to item '${itemName}' with a discount of ${percentage}%.`);
+    }
+    isValidCoupon(couponCode) {
+        // Simulated function to check if the coupon exists in a database
+        const validCoupons = ['COUPON1', 'COUPON2', 'COUPON3']; // Example valid coupon codes
+        return validCoupons.includes(couponCode);
     }
     // Empty the basket
     emptyBasket() {
