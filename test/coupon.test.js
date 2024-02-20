@@ -7,8 +7,10 @@ describe('Basket Class', function() {
     beforeEach(() => {
         basket = new Basket();
     });
-    it('should add an item to the basket', function() {
-        basket.addItem('Apple', 0.99);
-        expect(basket.items).to.deep.include({ name: 'Apple', price: 0.99 });
+    describe('addItem()', function() {
+        it('should add an item to the basket', function () {
+            basket.addItem('Apple', 0.99);
+            expect(basket.items).to.deep.include({name: 'Apple', price: 0.99});
+        });
     });
 });
