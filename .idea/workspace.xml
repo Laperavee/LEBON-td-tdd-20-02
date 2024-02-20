@@ -48,7 +48,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Mocha.Basket Class.applyCoupon.2. Apply a valid coupon discount to an item">
+  <component name="RunManager" selected="Mocha.Basket Class.applyCoupon">
     <configuration name="Basket Class.applyCoupon" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -96,8 +96,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.Basket Class.applyCoupon.2. Apply a valid coupon discount to an item" />
         <item itemvalue="Mocha.Basket Class.applyCoupon" />
+        <item itemvalue="Mocha.Basket Class.applyCoupon.2. Apply a valid coupon discount to an item" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +109,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708444706171</updated>
-      <workItem from="1708444707940" duration="1663000" />
+      <workItem from="1708444707940" duration="1737000" />
     </task>
     <servers />
   </component>

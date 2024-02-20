@@ -54,7 +54,13 @@ class Basket {
             console.log(`Unable to find ${itemToRemove}... Are you sure it was in the basket, or is it just an illusion?`);
         }
     }
-    applyCoupon(itemName, couponCode, percentage) {}
+    applyCoupon(itemName, couponCode, percentage) {
+        if (!this.items.some(item => item.name === itemName)) {
+            throw new Error(`Item '${itemName}' not found in the basket.`);
+        }
+        this.discounts[itemName] = percentage;
+        console.log(`Coupon '${couponCode}' applied to item '${itemName}' with a discount of ${percentage}%.`);
+    }
     // Empty the basket
     emptyBasket() {
         this.items = [];
