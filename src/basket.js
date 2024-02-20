@@ -12,7 +12,7 @@ class Basket {
         if (price <= 0) {
             throw new Error('Price must be greater than 0');
         }
-        this.items.push({ name: name, price: price });
+        this.items.push({ id:this.count ,name: name, price: price });
         console.log(`${name} has been successfully added. Your basket is starting to look like a treasure trove!`);
     }
     applyDiscount(code, percentage) {
@@ -54,23 +54,26 @@ class Basket {
             console.log(`Unable to find ${itemToRemove}... Are you sure it was in the basket, or is it just an illusion?`);
         }
     }
-    applyCoupon(itemName, couponCode, percentage) {
-        if (percentage<=0 || percentage >= 100){
-            throw new Error('Discount percentage cannot be inferior to 0 or superior to 100');
+    applyCoupon(itemId, couponCode, percentage) {
+        const item = this.items.find(item => item.id === itemId);
+        if (!item) {
+            throw new Error(`Item with id '${itemId}' not found in the basket.`);
         }
-        if (!this.items.some(item => item.name === itemName)) {
-            throw new Error(`Item '${itemName}' not found in the basket.`);
+
+        if (percentage <= 0 || percentage >= 100) {
+            throw new Error('Discount percentage cannot be inferior to 0 or superior to 100');
         }
         if (!this.isValidCoupon(couponCode)) {
             console.log("Invalid coupon code. Please try again.");
             return;
         }
-        if (this.discounts[itemName]) {
-            console.log(`A discount has already been applied to item '${itemName}'.`);
+        if (this.discounts[itemId]) {
+            console.log(`A discount has already been applied to item '${itemId}'.`);
             return;
         }
-        this.discounts[itemName] = { percentage: percentage };
-        console.log(`Coupon '${couponCode}' applied to item '${itemName}' with a discount of ${percentage}%.`);
+        this.discounts[itemId] = { percentage: percentage };
+        item.price -= item.price * (percentage / 100); // Apply discount to the item price
+        console.log(`Coupon '${couponCode}' applied to item '${itemId}' with a discount of ${percentage}%.`);
     }
     isValidCoupon(couponCode) {
         // Simulated function to check if the coupon exists in a database
