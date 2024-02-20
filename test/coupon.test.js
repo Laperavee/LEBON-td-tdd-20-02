@@ -26,8 +26,10 @@ describe('Basket Class', function() {
             expect(basket.discounts['Apple']).to.not.exist;
         });
         it('4. Not apply a discount to an item with negative percentage', function() {
-            basket.addItem('Apple', 100);
-            basket.applyCoupon('Apple', 'COUPON1', -15);
+            expect(() => {
+                basket.addItem('Apple', 100);
+                basket.applyCoupon('Apple', 'COUPON1', -15);
+            }).to.throw('Discount percentage cannot be inferior to 0 or superior to 100');
             expect(basket.discounts['Apple']).to.not.exist;
         });
     });

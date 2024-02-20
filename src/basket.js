@@ -55,6 +55,9 @@ class Basket {
         }
     }
     applyCoupon(itemName, couponCode, percentage) {
+        if (percentage<=0 || percentage >= 100){
+            throw new Error('Discount percentage cannot be inferior to 0 or superior to 100');
+        }
         if (!this.items.some(item => item.name === itemName)) {
             throw new Error(`Item '${itemName}' not found in the basket.`);
         }
