@@ -32,5 +32,12 @@ describe('Basket Class', function() {
             }).to.throw('Discount percentage cannot be inferior to 0 or superior to 100');
             expect(basket.discounts['Apple']).to.not.exist;
         });
+        it('5. Not apply a discount to an item with percentage greater than original price', function() {
+            expect(() => {
+                basket.addItem('Apple', 100);
+                basket.applyCoupon('Apple', 'COUPON1', 110);
+            }).to.throw('Discount percentage cannot be inferior to 0 or superior to 100');
+            expect(basket.discounts['Apple']).to.not.exist;
+        });
     });
 });
