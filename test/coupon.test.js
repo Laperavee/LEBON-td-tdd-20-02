@@ -25,5 +25,10 @@ describe('Basket Class', function() {
             basket.applyCoupon('Apple', 'INVALID_COUPON', 15);
             expect(basket.discounts['Apple']).to.not.exist;
         });
+        it('4. Not apply a discount to an item with negative percentage', function() {
+            basket.addItem('Apple', 100);
+            basket.applyCoupon('Apple', 'COUPON1', -15);
+            expect(basket.discounts['Apple']).to.not.exist;
+        });
     });
 });
