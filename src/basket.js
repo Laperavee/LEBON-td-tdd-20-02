@@ -12,6 +12,32 @@ class Basket {
         console.log(`${name} has been successfully added. Your basket is starting to look like a treasure trove!`);
     }
 
+    applyCoupon(itemName, couponCode, percentage) {
+        if (percentage <= 0 || percentage >= 100) {
+            throw new Error('Discount percentage must be greater than 0 and less than 100');
+        }
+        if (!this.isValidCoupon(couponCode)) {
+            console.log("Invalid coupon code. Please try again.");
+            return;
+        }
+        const itemIndex = this.items.findIndex(item => item.name === itemName);
+        if (itemIndex !== -1) {
+            if (!this.discounts[itemName]) {
+                this.discounts[itemName] = { code: couponCode, percentage: percentage };
+                console.log(`Coupon discount of ${percentage}% applied to ${itemName}.`);
+            } else {
+                console.log(`A coupon discount has already been applied to ${itemName}.`);
+            }
+        } else {
+            console.log(`Item ${itemName} not found in the basket.`);
+        }
+    }
+    isValidCoupon(couponCode) {
+        // Simulated function to check if the coupon exists in a database
+        const validCoupons = ['COUPON1', 'COUPON2', 'COUPON3']; // Example valid coupon codes
+        return validCoupons.includes(couponCode);
+    }
+
     applyDiscount(code, percentage) {
         // Vérifie si une remise a déjà été appliquée
         if (percentage <= 0) {
