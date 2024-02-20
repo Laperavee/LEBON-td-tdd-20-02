@@ -18,7 +18,7 @@ describe('Basket Class', function() {
             basket.addItem('Apple', 100);
             basket.applyCoupon('Apple', 'COUPON1', 15);
             expect(basket.discounts['Apple']).to.exist;
-            expect(basket.discounts['Apple']).to.equal(15);
+            expect(basket.discounts['Apple'].percentage).to.equal(15); // Access the percentage key
         });
         it('3. Not apply a discount to an item with invalid coupon code', function() {
             basket.addItem('Apple', 100);

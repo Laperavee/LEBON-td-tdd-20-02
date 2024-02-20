@@ -65,7 +65,11 @@ class Basket {
             console.log("Invalid coupon code. Please try again.");
             return;
         }
-        this.discounts[itemName] = percentage;
+        if (this.discounts[itemName]) {
+            console.log(`A discount has already been applied to item '${itemName}'.`);
+            return;
+        }
+        this.discounts[itemName] = { percentage: percentage };
         console.log(`Coupon '${couponCode}' applied to item '${itemName}' with a discount of ${percentage}%.`);
     }
     isValidCoupon(couponCode) {
@@ -79,16 +83,4 @@ class Basket {
         console.log("The basket is now as empty as a salesman's promises on Black Friday.");
     }
 }
-describe('applyCoupon()', function() {
-    it('should add an item to the basket', function() {
-        basket.applyCoupon('Apple', 'COUPON1',10);
-        expect(basket.items).to.deep.include({ name: 'Apple', price: 0.99 });
-    });
-
-    it('should increase the item count in the basket', function() {
-        basket.addItem('Apple', 0.99);
-        basket.addItem('Banana', 1.49);
-        expect(basket.items.length).to.equal(2);
-    });
-});
 export default Basket;
