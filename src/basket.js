@@ -4,6 +4,7 @@ import {expect} from "chai";
 class Basket {
     constructor() {
         this.items = []; // Each item is an object { name: 'Item', price: 1.99 }
+        this.discounts = {};
     }
 
     // Add an item to the basket
@@ -53,7 +54,7 @@ class Basket {
             console.log(`Unable to find ${itemToRemove}... Are you sure it was in the basket, or is it just an illusion?`);
         }
     }
-
+    applyCoupon(itemName, couponCode, percentage) {}
     // Empty the basket
     emptyBasket() {
         this.items = [];
