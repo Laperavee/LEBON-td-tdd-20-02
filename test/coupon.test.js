@@ -20,5 +20,10 @@ describe('Basket Class', function() {
             expect(basket.discounts['Apple']).to.exist;
             expect(basket.discounts['Apple']).to.equal(15);
         });
+        it('3. Not apply a discount to an item with invalid coupon code', function() {
+            basket.addItem('Apple', 100);
+            basket.applyCoupon('Apple', 'INVALID_COUPON', 15);
+            expect(basket.discounts['Apple']).to.not.exist;
+        });
     });
 });
