@@ -39,5 +39,12 @@ describe('Basket Class', function() {
             }).to.throw('Discount percentage cannot be inferior to 0 or superior to 100');
             expect(basket.discounts['Apple']).to.not.exist;
         });
+        it('6. Apply a discount only once per item', function() {
+            basket.addItem('Apple', 100);
+            basket.applyCoupon('Apple', 'COUPON1', 15);
+            basket.applyCoupon('Apple', 'COUPON2', 20);
+            expect(basket.discounts['Apple']).to.exist;
+            expect(basket.discounts['Apple'].percentage).to.equal(15);
+        });
     });
 });
